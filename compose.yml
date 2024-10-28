@@ -3,7 +3,7 @@ services:
   backend:
     build:
       context: '.'
-      dockerfile: 'Dockerfile'
+      dockerfile: 'Dockerfile.back'
     container_name: 'npi_backend'
     volumes:
       - './app/backend:/app'
@@ -18,12 +18,13 @@ services:
 
   # service for react frontend
   frontend:
-    image: 'node:23.1.0-alpine3.19'
+    build:
+      context: '.'
+      dockerfile: 'Dockerfile.front'
     container_name: 'npi_frontend'
     volumes:
       - './app/frontend:/app'
     working_dir: '/app'
-    command: 'npm install && npm run start'
     ports:
       - '3000:3000'
     networks:
