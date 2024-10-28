@@ -1,0 +1,39 @@
+services:
+  # service for fastapi backend 
+  backend:
+    build:
+      context: '.'
+      dockerfile: 'Dockerfile'
+    volumes:
+      - './app/backend:/app'
+    ports:
+      - '8000:8080'
+    networks:
+      - npi_network
+  # # service for react frontend
+  # frontend:
+  #   image: 'node:23.1.0-alpine3.19'
+  #   volumes:
+  #     - './app/frontend:/app'
+  #   ports:
+  #     - '3000:3000'
+  #   command: 'npm install && npm start'
+  #   networks:
+  #     - npi_network
+  # # service for mariadb database
+  # database:
+  #   image: 'mariadb:11.4'
+  #   volumes:
+  #     - 'db_data:/var/lib/mysql'
+  #   ports:
+  #     - '3306:3306'
+  #   environment:
+  #   networks:
+  #     - npi_network
+      
+volumes:
+  db_data:
+
+networks:
+  npi_network:
+    driver: bridge

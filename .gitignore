@@ -1,0 +1,8 @@
+# ignore __pycache__ directories everywhere
+__pycache__/
+
+# ignore node_modules directories everywhere
+node_modules/
+
+# ignore idea directories everywhere
+.idea/
