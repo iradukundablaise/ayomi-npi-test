@@ -1,13 +1,6 @@
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlmodel import SQLModel, Field
 
-class Base(DeclarativeBase):
-    pass
-
-class Result(Base):
-    __tablename__ = 'results'
-    id: Mapped[int] = mapped_column(primary_key=True)
-    expression: Mapped[str] = mapped_column()
-    result: Mapped[int] = mapped_column()
-
-    def __repr__(self) -> str:
-        return f"<Result(id={self.id}, expression={self.expression}, result={self.result})>"
+class Result(SQLModel, table=True):
+    id: int = Field(default=None, primary_key=True)
+    express: str
+    results: int

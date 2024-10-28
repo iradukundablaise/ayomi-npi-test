@@ -4,33 +4,31 @@ services:
     build:
       context: '.'
       dockerfile: 'Dockerfile'
+    container_name: 'npi_backend'
     volumes:
       - './app/backend:/app'
+    environment:
+      - 'DATABASE_URL=mysql://npi:npi@database/ayomi?charset=utf8mb4'
     ports:
       - '8000:8080'
     networks:
       - npi_network
-  # # service for react frontend
-  # frontend:
-  #   image: 'node:23.1.0-alpine3.19'
-  #   volumes:
-  #     - './app/frontend:/app'
-  #   ports:
-  #     - '3000:3000'
-  #   command: 'npm install && npm start'
-  #   networks:
-  #     - npi_network
-  # # service for mariadb database
-  # database:
-  #   image: 'mariadb:11.4'
-  #   volumes:
-  #     - 'db_data:/var/lib/mysql'
-  #   ports:
-  #     - '3306:3306'
-  #   environment:
-  #   networks:
-  #     - npi_network
-      
+    depends_on:
+      - database
+  # service for mysql database
+  database:
+    image: 'mysql:5.7'
+    container_name: 'npi_database'
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "ayomi"
+      MYSQL_USER: "npi"
+      MYSQL_PASSWORD: "npi"
+    networks:
+      - npi_network
+    volumes:
+      - db_data:/var/lib/mysql
+
 volumes:
   db_data:
 
