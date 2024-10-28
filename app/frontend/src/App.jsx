@@ -62,14 +62,15 @@ function App() {
         }
         
         <button 
-          className='bg-blue-500 text-white p-2 rounded mt-2'
+          className='bg-blue-500 text-white p-2 rounded mt-2 mr-2'
           onClick={() => { calculate() }}
           >Evaluer</button>
 
         <a
           href='http://localhost:8000/export-csv'
+          target='_blank'
           className='bg-green-500 text-white p-2 rounded mt-2'
-          >Exporter les données en csv</a>
+          >Exporter en csv</a>
       </div>
     </div>
   );
