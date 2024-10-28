@@ -5,8 +5,6 @@ services:
       context: '.'
       dockerfile: 'Dockerfile.back'
     container_name: 'npi_backend'
-    volumes:
-      - './app/backend:/app'
     environment:
       - 'DATABASE_URL=mysql://npi:npi@database/ayomi?charset=utf8mb4'
     ports:
