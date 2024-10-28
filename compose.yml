@@ -12,7 +12,8 @@ services:
     networks:
       - npi_network
     depends_on:
-      - database
+      database:
+        condition: service_healthy
 
   # service for react frontend
   frontend:
@@ -25,7 +26,6 @@ services:
       - '3000:3000'
     networks:
       - npi_network
-
   # service for mysql database
   database:
     image: 'mysql:5.7'
@@ -35,11 +35,16 @@ services:
       MYSQL_DATABASE: "ayomi"
       MYSQL_USER: "npi"
       MYSQL_PASSWORD: "npi"
+    healthcheck:
+      test: "mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD"
+      start_period: 5s
+      interval: 5s
+      timeout: 10s
+      retries: 5
     networks:
       - npi_network
     volumes:
       - db_data:/var/lib/mysql
-
 volumes:
   db_data:
 
