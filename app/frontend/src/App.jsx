@@ -34,12 +34,12 @@ function App() {
   return (
     <div className='my-10'>
       <h1 className='text-3xl text-center'>Calculatrice en notation polonaise inverse</h1>
-      <div className='w-80 bg-gray-100 p-4 mx-auto mt-10 rounded'>
+      <div className='w-96 bg-gray-100 p-4 mx-auto mt-10 rounded'>
         <label className='block mb-4 font-bold'>Expression en NPI</label>
         <input 
           type='text' 
           className='border border-gray-300 p-2 w-full mb-4'
-          placeholder='expresssion en NPI' 
+          placeholder='entrez une expression en NPI ex: 2 3 + 4 *'
           onChange={ (e) => {
             setExpression(e.target.value)
           }} 
